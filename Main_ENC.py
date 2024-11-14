@@ -95,22 +95,22 @@ if __name__ == "__main__": # Bara för att det måste vara så?! och för att ko
     parser.add_argument("filename", nargs="?", help="Ska denna fil krypteras eller dekrypteras?")
     args = parser.parse_args() # Läser in användarens val i action och filename.
 
-    if args.action == "generate_key": 
-        key_generation() # Om input är generate_key körs funktionen som genererar nyckeln.
-    elif args.action == "encrypt": # Om input är encrypt:
-        if args.filename: # och om input har filnamn/filsökväg som finns körs 2 funktionerna:
-            load_key()
-            encrypt_file(args.filename)
-        else: # Annars säger den att du har gjort FEL :(
-            print(f"Du måste ange vilken fil i denna mapp eller fullständig filsökväg till annan fil som du vill kryptera")
-    elif args.action == "decrypt": # Om input är decrypt, och.....
-        if args.filename: # om input innehåller filnamn/filsökväg körs 2 funktioner:
-            load_key()
-            decrypt_file(args.filename)
-        else: # Om du inte anger filnamn/sökväg, F-you :)
-            print(f"Du måste ange vilken fil i denna mapp eller fullständig filsökväg till annan fil som du vill dekryptera")
-
+    try:
+        if args.action == "generate_key": 
+            key_generation() # Om input är generate_key körs funktionen som genererar nyckeln.
+        elif args.action == "encrypt": # Om input är encrypt:
+            if args.filename: # och om input har filnamn/filsökväg som finns körs 2 funktionerna:
+                load_key()
+                encrypt_file(args.filename)
+            else: # Annars säger den att du har gjort FEL :(
+                print(f"Du måste ange vilken fil i denna mapp eller fullständig filsökväg till annan fil som du vill kryptera")
+        elif args.action == "decrypt": # Om input är decrypt, och.....
+            if args.filename: # om input innehåller filnamn/filsökväg körs 2 funktioner:
+                load_key()
+                decrypt_file(args.filename)
+            else: # Om du inte anger filnamn/sökväg, F-you :)
+                print(f"Du måste ange vilken fil i denna mapp eller fullständig filsökväg till annan fil som du vill dekryptera")
+    except Exception as e:
+        print(f"Ett fel inträffade när du försökte köra scriptet {e}")
 ## SLUT! #############################################################################################################################
 ######################################################################################################################################
-
-# Eller ska man implementera pyfiglet som presentation i programmet? c:
